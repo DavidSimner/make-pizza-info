@@ -1,3 +1,4 @@
+var fs = require('fs');
 var gulp = require('gulp');
 var git = require('gulp-git');
 var exec = require('child_process').exec;
@@ -63,6 +64,12 @@ function deploy (cwd, url, cb) {
 
     function push (err) {
         if (err) return cb(err);
+
+        if (process.env['AZURE_GIT_PASSWORD']) {
+            var filename = '/tmp/git-askpass.sh';
+            fs.writeFileSync(filename, '#!/bin/sh\nexec /bin/echo $AZURE_GIT_PASSWORD\n', { mode: 0700 });
+            process.env['GIT_ASKPASS'] = filename;
+        }
 
         return git.push('azure', 'master', options, cb);
     }

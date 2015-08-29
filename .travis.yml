@@ -1,2 +1,4 @@
 language: node_js
+install:
+    - echo hello
 script: gulp

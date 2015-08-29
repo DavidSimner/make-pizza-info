@@ -45,7 +45,7 @@ function deploy (cwd, url, cb) {
         var name = 'Git Deployr';
         var email = 'gitdeployr@make-pizza.info';
 
-        exec('cat /etc/gitconfig', function (error, stdout, stderr) { console.log('stdout: ' + stdout); });
+        exec('cat /home/travis/build/DavidSimnerRG/make-pizza-info/dist/api/.git/config', function (error, stdout, stderr) { console.log('stdout: ' + stdout); });
 
         process.env['GIT_COMMITTER_NAME'] = name;
         process.env['GIT_COMMITTER_EMAIL'] = email;

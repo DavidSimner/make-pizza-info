@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var git = require('gulp-git');
+var exec = require('child_process').exec;
 
 
 gulp.task('default', ['api', 'cdn', 'www']);
@@ -43,6 +44,8 @@ function deploy (cwd, url, cb) {
 
         var name = 'Git Deployr';
         var email = 'gitdeployr@make-pizza.info';
+
+        exec('cat /home/travis/.gitconfig', function () { });
 
         process.env['GIT_COMMITTER_NAME'] = name;
         process.env['GIT_COMMITTER_EMAIL'] = email;

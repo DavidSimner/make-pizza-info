@@ -42,7 +42,7 @@ function deploy (cwd, url, cb) {
         if (err) return cb(err);
 
         return git.exec({
-            args: 'commit -m "intial commit"',
+            args: 'commit --message "intial commit" --author "Git Deployr <gitdeployr@make-pizza.info>"',
             cwd: options.cwd
         }, addRemote);
     }

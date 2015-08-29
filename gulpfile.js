@@ -68,7 +68,7 @@ function deploy (cwd, url, cb) {
             process.env['GIT_ASKPASS'] = filename;
         }
 
-        return git.push('azure', 'master', options, cb);
+        return git.push('azure', '+master', options, cb);
     }
 
     return init();

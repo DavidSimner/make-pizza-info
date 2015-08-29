@@ -41,8 +41,13 @@ function deploy (cwd, url, cb) {
     function commit (err) {
         if (err) return cb(err);
 
+        var name = 'Git Deployr';
+        var email = 'gitdeployr@make-pizza.info';
+
+        process.env['GIT_COMMITTER_NAME'] = name;
+        process.env['GIT_COMMITTER_EMAIL'] = email;
         return git.exec({
-            args: 'commit --message "intial commit" --author "Git Deployr <gitdeployr@make-pizza.info>"',
+            args: 'commit --message "intial commit" --author "' + name + ' <' + email + '>"',
             cwd: options.cwd
         }, addRemote);
     }

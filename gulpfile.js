@@ -1,7 +1,16 @@
 var fs = require('fs');
 var gulp = require('gulp');
+var durandal = require('gulp-durandal');
 var git = require('gulp-git');
+var htmlreplace = require('gulp-html-replace');
+var ignore = require('gulp-ignore');
+var replace = require('gulp-replace');
+var rev = require('gulp-rev');
+var simplerename = require('gulp-simple-rename');
 var webserver = require('gulp-webserver');
+
+
+var js = [];
 
 
 gulp.task('default', ['api', 'cdn', 'www', '404', 'favicon']);
@@ -16,13 +25,32 @@ gulp.task('cdn', function () {
         .pipe(gulp.dest('dist/cdn'));
 });
 
+gulp.task('durandal', function () {
+    return durandal({
+            almond: true,
+            minify: true
+        })
+        .pipe(ignore.exclude('*.map'))
+        .pipe(replace(/\/\/#.*$/gm, ''))
+        .pipe(rev())
+        .pipe(simplerename(function (_, file) {
+            var path = 'js/' + file.revHash + '.js'
+            js.push('https://cdn.make-pizza.info/' + path);
+            return path;
+        }))
+        .pipe(gulp.dest('dist/cdn'));
+});
+
 gulp.task('www', function () {
     return gulp.src('www/**')
         .pipe(gulp.dest('dist/www'));
 });
 
-gulp.task('404', function () {
+gulp.task('404', ['durandal'], function () {
     return gulp.src('404.html')
+        .pipe(htmlreplace({
+            js: js
+        }))
         .pipe(gulp.dest('dist/www'));
 });
 

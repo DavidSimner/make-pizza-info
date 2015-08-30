@@ -1,6 +1,7 @@
 var fs = require('fs');
 var gulp = require('gulp');
 var git = require('gulp-git');
+var webserver = require('gulp-webserver');
 
 
 gulp.task('default', ['api', 'cdn', 'www', '404', 'favicon']);
@@ -28,6 +29,14 @@ gulp.task('404', function () {
 gulp.task('favicon', function () {
     return gulp.src('favicon.ico')
         .pipe(gulp.dest('dist/www'));
+});
+
+
+gulp.task('webserver', function () {
+    return gulp.src('.')
+      .pipe(webserver({
+          fallback: '/404.html'
+      }));
 });
 
 

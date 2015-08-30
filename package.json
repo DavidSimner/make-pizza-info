@@ -2,6 +2,7 @@
     "private": true,
     "devDependencies": {
         "gulp": "^3.9.0",
-        "gulp-git": "^1.2.4"
+        "gulp-git": "^1.2.4",
+        "gulp-webserver": "^0.9.1"
     }
 }

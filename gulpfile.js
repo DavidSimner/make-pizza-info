@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var git = require('gulp-git');
 
 
-gulp.task('default', ['api', 'cdn', 'www']);
+gulp.task('default', ['api', 'cdn', 'www', 'favicon']);
 
 gulp.task('api', function () {
     return gulp.src('api/**')
@@ -17,6 +17,11 @@ gulp.task('cdn', function () {
 
 gulp.task('www', function () {
     return gulp.src('www/**')
+        .pipe(gulp.dest('dist/www'));
+});
+
+gulp.task('favicon', function () {
+    return gulp.src('favicon.ico')
         .pipe(gulp.dest('dist/www'));
 });
 

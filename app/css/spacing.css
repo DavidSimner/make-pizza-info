@@ -2,6 +2,7 @@ body {
 	margin: 0;
 }
 
-ul {
-	margin-top: 0;
+
+.Spacing--none {
+	margin: 0;
 }

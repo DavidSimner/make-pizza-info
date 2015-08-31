@@ -1,9 +1,12 @@
+require('es6-promise').polyfill();
+
 var fs = require('fs');
 var gulp = require('gulp');
 var durandal = require('gulp-durandal');
 var git = require('gulp-git');
 var htmlreplace = require('gulp-html-replace');
 var ignore = require('gulp-ignore');
+var postcss = require('gulp-postcss');
 var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var simplerename = require('gulp-simple-rename');
@@ -21,6 +24,12 @@ gulp.task('api', function () {
 gulp.task('cdn', function () {
 	return gulp.src('cdn/**')
         .pipe(gulp.dest('dist/cdn'));
+});
+
+gulp.task('css', function () {
+    return gulp.src('app/main.css')
+        .pipe(postcss([]))
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('durandal', function () {

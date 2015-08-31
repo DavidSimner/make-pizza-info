@@ -1,0 +1,10 @@
+.Header-nav {
+	a {
+		color: $grey;
+		text-decoration: inherit;
+
+		&:hover {
+			color: $red;
+		}
+	}
+}

@@ -68,7 +68,7 @@ gulp.task('favicon', function () {
 });
 
 
-gulp.task('watch', function () {
+gulp.task('watch', ['css'], function () {
     gulp.watch(['app/**/*.css'], ['css']);
 
     return gulp.src('.')

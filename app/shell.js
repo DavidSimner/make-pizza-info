@@ -6,6 +6,7 @@ define(['plugins/router'], function (router) {
         return router.map([
             { route: '', moduleId: 'modules/home/index' }
         ])
+        .mapUnknownRoutes('modules/not-found/index', 'not-found')
         .activate({
             pushState: true
         });

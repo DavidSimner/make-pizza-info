@@ -7,6 +7,7 @@ define(['plugins/router'], function (router) {
             { route: '',                        moduleId: 'modules/home/index' },
             { route: 'contact',                 moduleId: 'modules/contact/index' },
             { route: 'recipe/:recipeId',        moduleId: 'modules/recipe/index' },
+            { route: 'recipes/:recipeGroupId',  moduleId: 'modules/recipe-group/index' },
         ])
         .mapUnknownRoutes('modules/not-found/index', 'not-found')
         .activate({

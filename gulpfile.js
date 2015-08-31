@@ -27,7 +27,7 @@ gulp.task('cdn', function () {
         .pipe(gulp.dest('dist/cdn'));
 });
 
-gulp.task('css', function () {
+gulp.task('css-watch', function () {
     return gulp.src('app/main.css')
         .pipe(postcss([postcssimport({ glob: true })]))
         .pipe(gulp.dest('dist'));
@@ -68,8 +68,8 @@ gulp.task('favicon', function () {
 });
 
 
-gulp.task('watch', ['css'], function () {
-    gulp.watch(['app/**/*.css'], ['css']);
+gulp.task('watch', ['css-watch'], function () {
+    gulp.watch(['app/**/*.css'], ['css-watch']);
 
     return gulp.src('.')
       .pipe(webserver({

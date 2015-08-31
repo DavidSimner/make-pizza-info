@@ -3,6 +3,10 @@ body {
 }
 
 
+.Spacing--block {
+	padding: 24px;
+}
+
 .Spacing--horizontal {
 	margin: 0;
 

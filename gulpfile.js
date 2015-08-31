@@ -13,8 +13,6 @@ var webserver = require('gulp-webserver');
 var js = [];
 
 
-gulp.task('default', ['api', 'cdn', 'www', '404', 'favicon']);
-
 gulp.task('api', function () {
     return gulp.src('api/**')
         .pipe(gulp.dest('dist/api'));
@@ -121,7 +119,7 @@ function deploy (cwd, url, cb) {
     return init();
 }
 
-gulp.task('deploy', ['default'], function (cb) {
+gulp.task('deploy', ['api', 'cdn', 'www', '404', 'favicon'], function (cb) {
     var items = {
         'dist/api': 'https://gitdeployr@make-pizza-info-api.scm.azurewebsites.net:443/make-pizza-info-api.git',
         'dist/cdn': 'https://gitdeployr@make-pizza-info-cdn.scm.azurewebsites.net:443/make-pizza-info-cdn.git',

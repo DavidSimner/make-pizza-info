@@ -8,6 +8,7 @@ var htmlreplace = require('gulp-html-replace');
 var ignore = require('gulp-ignore');
 var postcss = require('gulp-postcss');
 var postcssimport = require('postcss-import');
+var postcssnano = require('cssnano');
 var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var simplerename = require('gulp-simple-rename');
@@ -40,7 +41,7 @@ gulp.task('css-watch', function () {
 });
 
 gulp.task('css-deploy', function () {
-    return css_shared([])
+    return css_shared([postcssnano()])
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
             var path = 'css/' + file.revHash + '.css'

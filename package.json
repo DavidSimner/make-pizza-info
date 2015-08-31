@@ -1,6 +1,7 @@
 {
     "private": true,
     "devDependencies": {
+        "cssnano": "^2.6.1",
         "durandal": "^2.1.0",
         "es6-promise": "^3.0.2",
         "gulp": "^3.9.0",

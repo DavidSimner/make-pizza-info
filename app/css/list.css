@@ -1,0 +1,9 @@
+.List--horizontal {
+	ol&, ul& {
+		list-style-type: none;
+
+		& > li {
+			display: inline-block;
+		}
+	}
+}

@@ -9,6 +9,7 @@ var ignore = require('gulp-ignore');
 var postcss = require('gulp-postcss');
 var postcssimport = require('postcss-import');
 var postcssnano = require('cssnano');
+var postcssnested = require('postcss-nested');
 var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var simplerename = require('gulp-simple-rename');
@@ -30,6 +31,7 @@ gulp.task('cdn', function () {
 });
 
 function css_shared (processors) {
+    processors.unshift(postcssnested);
     processors.unshift(postcssimport({ glob: true }));
     return gulp.src('app/main.css')
         .pipe(postcss(processors));

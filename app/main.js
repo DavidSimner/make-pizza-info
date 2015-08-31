@@ -12,6 +12,7 @@ require(['durandal/app'], function (durandal) {
     durandal.title = 'Make Pizza!';
 
     durandal.configurePlugins({
+        router: true,
         widget: true
     });
 

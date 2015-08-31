@@ -27,9 +27,13 @@ gulp.task('cdn', function () {
         .pipe(gulp.dest('dist/cdn'));
 });
 
-gulp.task('css-watch', function () {
+function css_shared () {
     return gulp.src('app/main.css')
-        .pipe(postcss([postcssimport({ glob: true })]))
+        .pipe(postcss([postcssimport({ glob: true })]));
+}
+
+gulp.task('css-watch', function () {
+    return css_shared()
         .pipe(gulp.dest('dist'));
 });
 

@@ -52,7 +52,10 @@ gulp.task('css-deploy', function () {
 gulp.task('durandal', function () {
     return durandal({
             almond: true,
-            minify: true
+            minify: true,
+            pluginMap: {
+                '.html': 'text'
+            }
         })
         .pipe(ignore.exclude('*.map'))
         .pipe(replace(/\/\/#.*$/gm, ''))

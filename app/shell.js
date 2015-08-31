@@ -4,7 +4,7 @@ define(['plugins/router'], function (router) {
 
     Shell.prototype.activate = function () {
         return router.map([
-            { route: '', moduleId: 'modules/home/index' }
+            { route: '',                        moduleId: 'modules/home/index' },
         ])
         .mapUnknownRoutes('modules/not-found/index', 'not-found')
         .activate({

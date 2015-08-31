@@ -7,6 +7,7 @@ var git = require('gulp-git');
 var htmlreplace = require('gulp-html-replace');
 var ignore = require('gulp-ignore');
 var postcss = require('gulp-postcss');
+var postcssimport = require('postcss-import');
 var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var simplerename = require('gulp-simple-rename');
@@ -28,7 +29,7 @@ gulp.task('cdn', function () {
 
 gulp.task('css', function () {
     return gulp.src('app/main.css')
-        .pipe(postcss([]))
+        .pipe(postcss([postcssimport({ glob: true })]))
         .pipe(gulp.dest('dist'));
 });
 

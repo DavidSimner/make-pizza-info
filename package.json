@@ -1,7 +1,7 @@
 {
     "private": true,
     "dependencies": {
-        "durandal": "^2.1.0",
+        "durandal": "^2.1.0"
     },
     "devDependencies": {
         "cssnano": "^2.6.1",

@@ -28,19 +28,19 @@ gulp.task('cdn', function () {
         .pipe(gulp.dest('dist/cdn'));
 });
 
-function css_shared () {
-    var processors = [postcssimport({ glob: true })];
+function css_shared (processors) {
+    processors.unshift(postcssimport({ glob: true }));
     return gulp.src('app/main.css')
         .pipe(postcss(processors));
 }
 
 gulp.task('css-watch', function () {
-    return css_shared()
+    return css_shared([])
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('css-deploy', function () {
-    return css_shared()
+    return css_shared([])
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
             var path = 'css/' + file.revHash + '.css'

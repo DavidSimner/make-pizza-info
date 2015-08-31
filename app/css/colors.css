@@ -1,0 +1,16 @@
+$black: #2c2b2b;
+$grey: #66666e;
+$white: #ffffff;
+
+$red: #ff0000;
+$yellow: #ffe335;
+
+
+body {
+    background-color: $white;
+    color: $black;
+}
+
+h1 {
+    color: $red;
+}

@@ -6,7 +6,9 @@ define(['plugins/router'], function (router) {
         return router.map([
             { route: '', moduleId: 'modules/home/index' }
         ])
-        .activate();
+        .activate({
+            pushState: true
+        });
     };
 
     return Shell;

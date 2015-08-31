@@ -29,8 +29,9 @@ gulp.task('cdn', function () {
 });
 
 function css_shared () {
+    var processors = [postcssimport({ glob: true })];
     return gulp.src('app/main.css')
-        .pipe(postcss([postcssimport({ glob: true })]));
+        .pipe(postcss(processors));
 }
 
 gulp.task('css-watch', function () {

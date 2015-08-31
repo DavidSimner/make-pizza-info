@@ -14,6 +14,7 @@ var simplerename = require('gulp-simple-rename');
 var webserver = require('gulp-webserver');
 
 
+var css = [];
 var js = [];
 
 
@@ -37,6 +38,17 @@ gulp.task('css-watch', function () {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('css-deploy', function () {
+    return css_shared()
+        .pipe(rev())
+        .pipe(simplerename(function (_, file) {
+            var path = 'css/' + file.revHash + '.css'
+            css.push('https://cdn.make-pizza.info/' + path);
+            return path;
+        }))
+        .pipe(gulp.dest('dist/cdn'));
+});
+
 gulp.task('durandal', function () {
     return durandal({
             almond: true,
@@ -58,9 +70,10 @@ gulp.task('www', function () {
         .pipe(gulp.dest('dist/www'));
 });
 
-gulp.task('404', ['durandal'], function () {
+gulp.task('404', ['css-deploy', 'durandal'], function () {
     return gulp.src('404.html')
         .pipe(htmlreplace({
+            css: css,
             js: js
         }))
         .pipe(gulp.dest('dist/www'));

@@ -4,7 +4,9 @@ requirejs.config({
         durandal: '../node_modules/durandal/js',
         jquery: '../node_modules/durandal/node_modules/jquery/dist/jquery.min',
         knockout: '../node_modules/durandal/node_modules/knockout/build/output/knockout-latest',
-        plugins: '../node_modules/durandal/js/plugins'
+        'plugins/history': '../node_modules/durandal/js/plugins/history',
+        'plugins/router': '../node_modules/durandal/js/plugins/router',
+        'plugins/widget': '../node_modules/durandal/js/plugins/widget'
     }
 });
 

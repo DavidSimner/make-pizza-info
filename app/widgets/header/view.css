@@ -1,6 +1,6 @@
 .Header-nav {
 	a {
-		color: $grey;
+		color: $darkgrey;
 		text-decoration: inherit;
 
 		&:hover {

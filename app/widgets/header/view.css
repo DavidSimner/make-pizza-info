@@ -1,3 +1,7 @@
+.Header {
+	border-bottom: 1px solid $lightgrey;
+}
+
 .Header-nav {
 	a {
 		color: $darkgrey;

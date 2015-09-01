@@ -59,6 +59,9 @@ gulp.task('durandal', function () {
     return durandal({
             almond: true,
             minify: true,
+            extraModules: [
+                'plugins/widget'
+            ],
             pluginMap: {
                 '.html': 'text'
             }

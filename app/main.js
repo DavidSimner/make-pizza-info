@@ -21,4 +21,8 @@ require(['durandal/app'], function (durandal) {
     durandal.start().done(function () {
         durandal.setRoot('shell');
     });
+
+    console.log('%cStop!', 'color:red;font-family:sans-serif;font-size:96px');
+    console.log('%cIf someone told you to copy and paste something here, it is a scam, and will give them access to your account.', 'font-family:sans-serif;font-size:20px');
+    console.log('%cFor more information, see https://en.wikipedia.org/wiki/Self-XSS', 'font-family:sans-serif;font-size:20px');
 });

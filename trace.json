@@ -1,8 +1,8 @@
 {
     "provider": null,
-	"datacentre": null,
+    "datacentre": null,
     "server": null,
-	"scheme": null,
+    "scheme": null,
     "domain": null,
-	"client": null
+    "client": null
 }

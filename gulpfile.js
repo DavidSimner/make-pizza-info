@@ -78,7 +78,7 @@ gulp.task('durandal', function () {
 });
 
 gulp.task('www', function () {
-    return gulp.src(['www/**', 'web.config'])
+    return gulp.src(['www/**', 'web.config', 'favicon.ico'])
         .pipe(gulp.dest('dist/www'));
 });
 
@@ -88,11 +88,6 @@ gulp.task('404', ['css-deploy', 'durandal'], function () {
             css: css,
             js: js
         }))
-        .pipe(gulp.dest('dist/www'));
-});
-
-gulp.task('favicon', function () {
-    return gulp.src('favicon.ico')
         .pipe(gulp.dest('dist/www'));
 });
 
@@ -160,7 +155,7 @@ function deploy (cwd, url, cb) {
     return init();
 }
 
-gulp.task('deploy', ['api', 'cdn', 'www', '404', 'favicon'], function (cb) {
+gulp.task('deploy', ['api', 'cdn', 'www', '404'], function (cb) {
     var items = {
         'dist/api': 'https://gitdeployr@make-pizza-info-api.scm.azurewebsites.net:443/make-pizza-info-api.git',
         'dist/cdn': 'https://gitdeployr@make-pizza-info-cdn.scm.azurewebsites.net:443/make-pizza-info-cdn.git',

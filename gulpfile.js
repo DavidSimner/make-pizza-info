@@ -22,12 +22,12 @@ var js = [];
 
 
 gulp.task('api', function () {
-    return gulp.src('api/**')
+    return gulp.src(['api/**', 'web.config'])
         .pipe(gulp.dest('dist/api'));
 });
 
 gulp.task('cdn', function () {
-	return gulp.src('cdn/**')
+    return gulp.src(['cdn/**', 'web.config'])
         .pipe(gulp.dest('dist/cdn'));
 });
 
@@ -78,7 +78,7 @@ gulp.task('durandal', function () {
 });
 
 gulp.task('www', function () {
-    return gulp.src('www/**')
+    return gulp.src(['www/**', 'web.config'])
         .pipe(gulp.dest('dist/www'));
 });
 

@@ -1,2 +1,7 @@
 language: node_js
-script: gulp deploy
+script: gulp build
+deploy:
+  provider: script
+  script: gulp deploy
+  on:
+    branch: master

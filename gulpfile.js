@@ -155,7 +155,9 @@ function deploy (cwd, url, cb) {
     return init();
 }
 
-gulp.task('deploy', ['api', 'cdn', 'www', '404'], function (cb) {
+gulp.task('build', ['api', 'cdn', 'www', '404']);
+
+gulp.task('deploy', function (cb) {
     var items = {
         'dist/api': 'https://gitdeployr@make-pizza-info-api.scm.azurewebsites.net:443/make-pizza-info-api.git',
         'dist/cdn': 'https://gitdeployr@make-pizza-info-cdn.scm.azurewebsites.net:443/make-pizza-info-cdn.git',

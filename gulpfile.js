@@ -83,7 +83,7 @@ gulp.task('www', function () {
 });
 
 gulp.task('404', ['css-deploy', 'durandal'], function () {
-    return gulp.src('404.html')
+    return gulp.src('error.404')
         .pipe(htmlreplace({
             css: css,
             js: js
@@ -97,7 +97,7 @@ gulp.task('watch', ['css-watch'], function () {
 
     return gulp.src('.')
       .pipe(webserver({
-          fallback: '/404.html'
+          fallback: 'error.404'
       }));
 });
 

@@ -1,7 +1,7 @@
-define(['intern!object', 'widgets/header/viewmodel'], function (registerSuite, HeaderViewModel) {
-    registerSuite({
-        'can construct': function () {
+define(['intern!tdd', 'widgets/header/viewmodel'], function (tdd, HeaderViewModel) {
+    tdd.suite('widgets/header/viewmodel', function () {
+        tdd.test('can construct', function () {
             new HeaderViewModel();
-        }
+        });
     });
 });

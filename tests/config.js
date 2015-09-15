@@ -2,6 +2,7 @@ define({
     suites: [
         'tests/modules/contact',
         'tests/modules/home',
+        'tests/modules/not-found',
         'tests/widgets/header',
     ],
     loaders: {

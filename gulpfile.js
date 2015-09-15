@@ -6,6 +6,7 @@ var durandal = require('gulp-durandal');
 var git = require('gulp-git');
 var htmlreplace = require('gulp-html-replace');
 var ignore = require('gulp-ignore');
+var intern = require('gulp-intern');
 var postcss = require('gulp-postcss');
 var postcssimport = require('postcss-import');
 var postcssnano = require('cssnano');
@@ -91,9 +92,15 @@ gulp.task('404', ['css-deploy', 'durandal'], function () {
         .pipe(gulp.dest('dist/www'));
 });
 
+gulp.task('test', function () {
+    return gulp.src('')
+        .pipe(intern());
+});
+
 
 gulp.task('watch', ['css-watch'], function () {
     gulp.watch(['app/**/*.css'], ['css-watch']);
+    gulp.watch(['app/**/*.js', 'tests/**/*.js'], ['test']);
 
     return gulp.src('.')
       .pipe(webserver({
@@ -102,7 +109,7 @@ gulp.task('watch', ['css-watch'], function () {
 });
 
 
-gulp.task('build', ['api', 'cdn', 'www', '404']);
+gulp.task('build', ['api', 'cdn', 'www', '404', 'test']);
 
 
 function deploy (cwd, url, cb) {

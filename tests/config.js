@@ -1,6 +1,7 @@
 define({
     suites: [
-        'tests/modules/home'
+        'tests/modules/home',
+        'tests/widgets/header',
     ],
     loaders: {
         'host-node': 'durandal/node_modules/requirejs'

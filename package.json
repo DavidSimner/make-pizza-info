@@ -13,6 +13,7 @@
         "gulp-html-replace": "^1.5.1",
         "gulp-ignore": "^1.2.1",
         "gulp-intern": "0.0.3",
+        "gulp-jshint": "^1.11.2",
         "gulp-postcss": "^6.0.0",
         "gulp-replace": "^0.5.4",
         "gulp-rev": "^6.0.1",

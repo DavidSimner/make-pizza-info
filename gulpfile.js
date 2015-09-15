@@ -7,6 +7,7 @@ var git = require('gulp-git');
 var htmlreplace = require('gulp-html-replace');
 var ignore = require('gulp-ignore');
 var intern = require('gulp-intern');
+var jshint = require('gulp-jshint');
 var postcss = require('gulp-postcss');
 var postcssimport = require('postcss-import');
 var postcssnano = require('cssnano');
@@ -92,6 +93,14 @@ gulp.task('404', ['css-deploy', 'durandal'], function () {
         .pipe(gulp.dest('dist/www'));
 });
 
+
+gulp.task('jshint', function () {
+    return gulp.src(['gulpfile.js', 'app/**/*.js', 'tests/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter())
+        .pipe(jshint.reporter('fail'));
+});
+
 gulp.task('test', function () {
     return gulp.src('')
         .pipe(intern());
@@ -100,7 +109,7 @@ gulp.task('test', function () {
 
 gulp.task('watch', ['css-watch'], function () {
     gulp.watch(['app/**/*.css'], ['css-watch']);
-    gulp.watch(['app/**/*.js', 'tests/**/*.js'], ['test']);
+    gulp.watch(['app/**/*.js', 'tests/**/*.js'], ['jshint', 'test']);
 
     return gulp.src('.')
       .pipe(webserver({
@@ -109,7 +118,7 @@ gulp.task('watch', ['css-watch'], function () {
 });
 
 
-gulp.task('build', ['api', 'cdn', 'www', '404', 'test']);
+gulp.task('build', ['api', 'cdn', 'www', '404', 'jshint', 'test']);
 
 
 function deploy (cwd, url, cb) {

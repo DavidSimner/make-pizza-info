@@ -5,6 +5,7 @@ define({
         'tests/modules/not-found',
         'tests/modules/recipe',
         'tests/modules/recipe-group',
+        'tests/modules/trace',
         'tests/widgets/header',
     ],
     loaders: {

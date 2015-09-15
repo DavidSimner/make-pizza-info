@@ -1,5 +1,5 @@
 define({
     suites: [
     ],
-    excludeInstrumentation: /^node_modules\//
+    excludeInstrumentation: /\/node_modules\//
 });

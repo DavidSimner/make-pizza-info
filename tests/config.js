@@ -3,6 +3,7 @@ define({
         'tests/modules/contact',
         'tests/modules/home',
         'tests/modules/not-found',
+        'tests/modules/recipe',
         'tests/widgets/header',
     ],
     loaders: {

@@ -102,6 +102,9 @@ gulp.task('watch', ['css-watch'], function () {
 });
 
 
+gulp.task('build', ['api', 'cdn', 'www', '404']);
+
+
 function deploy (cwd, url, cb) {
     var options = {
         cwd: cwd
@@ -154,8 +157,6 @@ function deploy (cwd, url, cb) {
 
     return init();
 }
-
-gulp.task('build', ['api', 'cdn', 'www', '404']);
 
 gulp.task('deploy', function (cb) {
     var items = {

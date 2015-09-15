@@ -1,5 +1,6 @@
 define({
     suites: [
+        'tests/modules/contact',
         'tests/modules/home',
         'tests/widgets/header',
     ],

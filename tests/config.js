@@ -4,6 +4,7 @@ define({
         'tests/modules/home',
         'tests/modules/not-found',
         'tests/modules/recipe',
+        'tests/modules/recipe-group',
         'tests/widgets/header',
     ],
     loaders: {

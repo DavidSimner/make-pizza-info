@@ -1,6 +1,6 @@
 define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, expect, rp) {
     tdd.suite('web.config', function () {
-        function ok (response) {
+        function ok (expectedContentType, response) {
             expect(response.complete).to.equal(true);
 
             expect(response.httpVersion).to.equal('1.1');
@@ -17,7 +17,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
                 'accept-ranges': 'bytes',
                 'connection': 'close',
-                'content-type': 'text/plain',
+                'content-type': expectedContentType,
                 'server': 'Microsoft-IIS/8.0',
                 'x-powered-by': 'ASP.NET',
             });
@@ -25,10 +25,12 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             expect(response.body).to.be.a('string');
         }
 
+        var okText = ok.bind(this, 'text/plain');
+
         var allTestCases = {
-            'GET api /humans.txt': ok,
-            'GET cdn /humans.txt': ok,
-            'GET www /humans.txt': ok,
+            'GET api /humans.txt': okText,
+            'GET cdn /humans.txt': okText,
+            'GET www /humans.txt': okText,
         };
 
         function test (method, uri, assert) {

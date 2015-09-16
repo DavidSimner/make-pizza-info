@@ -25,12 +25,19 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             expect(response.body).to.be.a('string');
         }
 
+        var okHtml = ok.bind(this, 'text/html');
         var okText = ok.bind(this, 'text/plain');
 
         var allTestCases = {
             'GET api /humans.txt': okText,
             'GET cdn /humans.txt': okText,
+            'GET www /human': okHtml,
+            'GET www /humans': okHtml,
+            'GET www /humans.tx': okHtml,
             'GET www /humans.txt': okText,
+            'GET www /humans.txt/': okHtml,
+            'GET www /humans.txt/2': okHtml,
+            'GET www /web.config': okHtml,
         };
 
         function test (method, uri, assert) {

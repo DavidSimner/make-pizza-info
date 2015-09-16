@@ -30,12 +30,21 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
         var okHtml = ok.bind(this, 'text/html');
         var okIcon = ok.bind(this, 'image/x-icon');
+        var okJavascript = ok.bind(this, 'application/x-javascript');
         var okText = ok.bind(this, 'text/plain');
+
+        function testSinglePageApp (response) {
+            okHtml(response);
+
+            var scriptSrc = response.body.match(/<script src=".*(\/js\/.+)"><\/script>/)[1];
+            var scriptUri = 'https://make-pizza-info-cdn.azurewebsites.net' + scriptSrc;
+            return test('GET', scriptUri, okJavascript);
+        }
 
         var allTestCases = {
             'GET api /humans.txt': okText,
             'GET cdn /humans.txt': okText,
-            'GET www /': okHtml,
+            'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,
             'GET www /humans': okHtml,

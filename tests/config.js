@@ -1,5 +1,6 @@
 define({
     suites: [
+        'tests/infrastructure/web-config',
         'tests/modules/contact',
         'tests/modules/home',
         'tests/modules/not-found',

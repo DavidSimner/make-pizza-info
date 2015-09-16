@@ -31,6 +31,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var allTestCases = {
             'GET api /humans.txt': okText,
             'GET cdn /humans.txt': okText,
+            'GET www /': okHtml,
             'GET www /human': okHtml,
             'GET www /humans': okHtml,
             'GET www /humans.tx': okHtml,

@@ -13,13 +13,16 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 'date': response.headers.date,
                 'etag': response.headers.etag,
                 'last-modified': response.headers['last-modified'],
-                'set-cookie': response.headers['set-cookie'],
 
                 'accept-ranges': 'bytes',
                 'connection': 'close',
                 'content-type': expectedContentType,
                 'server': 'Microsoft-IIS/8.0',
-                'x-powered-by': 'ASP.NET',
+
+                'arr-disable-session-affinity': 'true',
+                'x-content-type-options': 'nosniff',
+                'x-frame-options': 'DENY',
+                'x-xss-protection': '1; mode=block',
             });
 
             expect(response.body).to.be.a('string');

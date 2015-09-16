@@ -29,12 +29,14 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         }
 
         var okHtml = ok.bind(this, 'text/html');
+        var okIcon = ok.bind(this, 'image/x-icon');
         var okText = ok.bind(this, 'text/plain');
 
         var allTestCases = {
             'GET api /humans.txt': okText,
             'GET cdn /humans.txt': okText,
             'GET www /': okHtml,
+            'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,
             'GET www /humans': okHtml,
             'GET www /humans.tx': okHtml,

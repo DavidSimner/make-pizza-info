@@ -11,10 +11,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             var expectedHeaders = {
                 'content-length': response.headers['content-length'],
                 'date': response.headers.date,
-                'etag': response.headers.etag,
-                'last-modified': response.headers['last-modified'],
 
-                'accept-ranges': 'bytes',
                 'connection': 'close',
                 'content-type': expectedContentType,
                 'server': 'Microsoft-IIS/8.0',
@@ -25,12 +22,19 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 'x-frame-options': 'DENY',
                 'x-xss-protection': '1; mode=block',
             };
+            if (expectedStatusCode === 200) {
+                expectedHeaders.etag = response.headers.etag;
+                expectedHeaders['last-modified'] = response.headers['last-modified'];
+
+                expectedHeaders['accept-ranges'] = 'bytes';
+            }
             expect(response.headers).deep.equal(expectedHeaders);
 
             expect(response.body).to.be.a('string');
         }
 
         var ok = expects.bind(this, 200, 'OK');
+        var forbidden = expects.bind(this, 403, 'Forbidden', 'text/html');
 
         var okCss = ok.bind(this, 'text/css');
         var okHtml = ok.bind(this, 'text/html');
@@ -55,6 +59,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var allTestCases = {
             'GET api /humans.txt': okText,
             'GET cdn /humans.txt': okText,
+            'GET cdn /js': forbidden,
             'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,
@@ -70,6 +75,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             return rp({
                     method: method,
                     uri: uri,
+                    simple: false,
+                    followRedirect: false,
                     resolveWithFullResponse: true
                 })
                 .then(assert);

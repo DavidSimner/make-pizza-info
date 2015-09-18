@@ -1,12 +1,12 @@
 define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, expect, rp) {
     tdd.suite('web.config', function () {
-        function ok (expectedContentType, response) {
+        function expects (expectedStatusCode, expectedStatusMessage, expectedContentType, response) {
             expect(response.complete).to.equal(true);
 
             expect(response.httpVersion).to.equal('1.1');
 
-            expect(response.statusCode).to.equal(200);
-            expect(response.statusMessage).to.equal('OK');
+            expect(response.statusCode).to.equal(expectedStatusCode);
+            expect(response.statusMessage).to.equal(expectedStatusMessage);
 
             expect(response.headers).deep.equal({
                 'content-length': response.headers['content-length'],
@@ -28,6 +28,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
             expect(response.body).to.be.a('string');
         }
+
+        var ok = expects.bind(this, 200, 'OK');
 
         var okCss = ok.bind(this, 'text/css');
         var okHtml = ok.bind(this, 'text/html');

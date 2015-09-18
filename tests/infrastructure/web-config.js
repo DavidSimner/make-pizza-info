@@ -38,7 +38,9 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
             var scriptSrc = response.body.match(/<script src=".*(\/js\/.+)"><\/script>/)[1];
             var scriptUri = 'https://make-pizza-info-cdn.azurewebsites.net' + scriptSrc;
-            return test('GET', scriptUri, okJavascript);
+            var scriptPromise = test('GET', scriptUri, okJavascript);
+
+            return scriptPromise;
         }
 
         var allTestCases = {

@@ -8,7 +8,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             expect(response.statusCode).to.equal(expectedStatusCode);
             expect(response.statusMessage).to.equal(expectedStatusMessage);
 
-            expect(response.headers).deep.equal({
+            var expectedHeaders = {
                 'content-length': response.headers['content-length'],
                 'date': response.headers.date,
                 'etag': response.headers.etag,
@@ -24,7 +24,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 'x-content-type-options': 'nosniff',
                 'x-frame-options': 'DENY',
                 'x-xss-protection': '1; mode=block',
-            });
+            };
+            expect(response.headers).deep.equal(expectedHeaders);
 
             expect(response.body).to.be.a('string');
         }

@@ -28,6 +28,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             expect(response.body).to.be.a('string');
         }
 
+        var okCss = ok.bind(this, 'text/css');
         var okHtml = ok.bind(this, 'text/html');
         var okIcon = ok.bind(this, 'image/x-icon');
         var okJavascript = ok.bind(this, 'application/x-javascript');
@@ -36,11 +37,15 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         function testSinglePageApp (response) {
             okHtml(response);
 
+            var linkHref = response.body.match(/<link rel="stylesheet" href=".*(\/css\/.+)">/)[1];
+            var linkUri = 'https://make-pizza-info-cdn.azurewebsites.net' + linkHref;
+            var linkPromise = test('GET', linkUri, okCss);
+
             var scriptSrc = response.body.match(/<script src=".*(\/js\/.+)"><\/script>/)[1];
             var scriptUri = 'https://make-pizza-info-cdn.azurewebsites.net' + scriptSrc;
             var scriptPromise = test('GET', scriptUri, okJavascript);
 
-            return scriptPromise;
+            return Promise.all([linkPromise, scriptPromise]);
         }
 
         var allTestCases = {

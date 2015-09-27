@@ -38,16 +38,16 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             }
         }
 
-        var ok__TEMP = expects.bind(this, 200, 'OK');
+        var ok = expects.bind(this, 200, 'OK');
         var notFound = expects.bind(this, 404, 'Not Found', undefined);
 
-        var ok = ok__TEMP;
+        var okPublic = ok;
 
-        var okCss = ok.bind(this, 'text/css; charset=utf-8');
-        var okHtml = ok.bind(this, 'text/html; charset=utf-8');
-        var okIcon = ok.bind(this, 'image/x-icon');
-        var okJavascript = ok.bind(this, 'application/x-javascript; charset=utf-8');
-        var okText = ok.bind(this, 'text/plain; charset=utf-8');
+        var okCss = okPublic.bind(this, 'text/css; charset=utf-8');
+        var okHtml = okPublic.bind(this, 'text/html; charset=utf-8');
+        var okIcon = okPublic.bind(this, 'image/x-icon');
+        var okJavascript = okPublic.bind(this, 'application/x-javascript; charset=utf-8');
+        var okText = okPublic.bind(this, 'text/plain; charset=utf-8');
 
         function testSinglePageApp (response) {
             okHtml(response);

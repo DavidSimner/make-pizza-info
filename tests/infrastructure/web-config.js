@@ -92,6 +92,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,
             'GET www /humans': okHtml,
+            'GET www /humans.': okHtml,
             'GET www /humans.tx': okHtml,
             'GET www /humans.txt': okText,
             'GET www /humans.txt/': okHtml,

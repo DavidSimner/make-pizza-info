@@ -148,7 +148,7 @@ function deploy (cwd, url, cb) {
         process.env.GIT_COMMITTER_NAME = name;
         process.env.GIT_COMMITTER_EMAIL = email;
         return git.exec({
-            args: 'commit --message "intial commit"',
+            args: 'commit --message "intial commit" --author "' + name + ' <' + email + '>"',
             cwd: options.cwd
         }, addRemote);
     }

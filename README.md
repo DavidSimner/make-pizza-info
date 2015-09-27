@@ -8,3 +8,12 @@
 
 [![Build](https://img.shields.io/travis/DavidSimner/make-pizza-info.svg)](https://travis-ci.org/DavidSimner/make-pizza-info)
 [![Production](https://img.shields.io/badge/production-azure-007fff.svg)](https://make-pizza.info/)
+
+## Contribute
+
+```shell
+  git clone git@github.com:DavidSimner/make-pizza-info.git
+  cd make-pizza-info/
+  npm install
+  node_modules/.bin/gulp watch
+```

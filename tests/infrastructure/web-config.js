@@ -41,11 +41,11 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var ok = expects.bind(this, 200, 'OK');
         var notFound = expects.bind(this, 404, 'Not Found', undefined);
 
-        var okCss = ok.bind(this, 'text/css');
-        var okHtml = ok.bind(this, 'text/html');
+        var okCss = ok.bind(this, 'text/css; charset=utf-8');
+        var okHtml = ok.bind(this, 'text/html; charset=utf-8');
         var okIcon = ok.bind(this, 'image/x-icon');
-        var okJavascript = ok.bind(this, 'application/x-javascript');
-        var okText = ok.bind(this, 'text/plain');
+        var okJavascript = ok.bind(this, 'application/x-javascript; charset=utf-8');
+        var okText = ok.bind(this, 'text/plain; charset=utf-8');
 
         function testSinglePageApp (response) {
             okHtml(response);

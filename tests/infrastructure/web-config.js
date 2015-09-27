@@ -38,8 +38,10 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             }
         }
 
-        var ok = expects.bind(this, 200, 'OK');
+        var ok__TEMP = expects.bind(this, 200, 'OK');
         var notFound = expects.bind(this, 404, 'Not Found', undefined);
+
+        var ok = ok__TEMP;
 
         var okCss = ok.bind(this, 'text/css; charset=utf-8');
         var okHtml = ok.bind(this, 'text/html; charset=utf-8');

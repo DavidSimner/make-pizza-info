@@ -1,3 +1,7 @@
+# Make Pizza!
+
+**Because pizza is super tasty :)**
+
 [![Issues](https://img.shields.io/github/issues/DavidSimner/make-pizza-info.svg)](https://github.com/DavidSimner/make-pizza-info/issues)
 [![Production](https://img.shields.io/badge/backlog-trello-brightgreen.svg)](https://trello.com/b/cGU749TR/make-pizza-info)
 

@@ -30,7 +30,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             if (expectedContentType) {
                 expectedHeaders['content-type'] = expectedContentType;
             }
-            expect(response.headers).deep.equal(expectedHeaders);
+            expect(response.headers).to.deep.equal(expectedHeaders);
 
             expect(response.body).to.be.a('string');
         }

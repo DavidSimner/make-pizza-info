@@ -35,6 +35,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
         var ok = expects.bind(this, 200, 'OK');
         var forbidden = expects.bind(this, 403, 'Forbidden', 'text/html');
+        var notFound = expects.bind(this, 404, 'Not Found', 'text/html');
 
         var okCss = ok.bind(this, 'text/css');
         var okHtml = ok.bind(this, 'text/html');
@@ -58,9 +59,12 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
         var allTestCases = {
             'GET api /humans.txt': okText,
+            'GET api /t': notFound,
 
             'GET cdn /humans.txt': okText,
+            'GET cdn /j': notFound,
             'GET cdn /js': forbidden,
+            'GET cdn /js/h': notFound,
 
             'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,

@@ -110,7 +110,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
          'PATCH',
          'PROPFIND', 'PROPPATCH', 'MKCOL', 'COPY', 'MOVE', 'LOCK', 'UNLOCK'].forEach(function (method) {
             ['api', 'cdn', 'www'].forEach(function (site) {
-                ['/', '/humans.txt', '/NotFound'].forEach(function (uri) {
+                ['/', '/humans.txt', '/humans.txt/', '/NotFound'].forEach(function (uri) {
                     allTestCases[method + ' ' + site + ' ' + uri] = methodNotAllowed;
                 });
             });

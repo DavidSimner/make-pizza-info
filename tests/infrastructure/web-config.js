@@ -13,7 +13,6 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 'date': response.headers.date,
 
                 'connection': 'close',
-                'content-type': expectedContentType,
                 'server': 'Microsoft-IIS/8.0',
 
                 'arr-disable-session-affinity': 'true',
@@ -28,13 +27,16 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
                 expectedHeaders['accept-ranges'] = 'bytes';
             }
+            if (expectedContentType) {
+                expectedHeaders['content-type'] = expectedContentType;
+            }
             expect(response.headers).deep.equal(expectedHeaders);
 
             expect(response.body).to.be.a('string');
         }
 
         var ok = expects.bind(this, 200, 'OK');
-        var notFound = expects.bind(this, 404, 'Not Found', 'text/html');
+        var notFound = expects.bind(this, 404, 'Not Found', undefined);
 
         var okCss = ok.bind(this, 'text/css');
         var okHtml = ok.bind(this, 'text/html');

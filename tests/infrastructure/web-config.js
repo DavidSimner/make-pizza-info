@@ -75,18 +75,22 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var allTestCases = {
             'GET api /': notFound,
             'GET api /humans.txt': okText,
+            'GET api /humans.txt/': notFound,
             'GET api /t': notFound,
             'GET api /trace.json': okPrivateJson,
             'GET api /trace.json application/json': okPrivateJson,
+            'GET api /web.config': notFound,
 
             'GET cdn /': notFound,
             'GET cdn /humans.txt': okText,
+            'GET cdn /humans.txt/': notFound,
             'GET cdn /j': notFound,
             'GET cdn /js': notFound,
             'GET cdn /js/': notFound,
             'GET cdn /js/h': notFound,
             'GET cdn /trace.json': okPrivateJson,
             'GET cdn /trace.json application/json': okPrivateJson,
+            'GET cdn /web.config': notFound,
 
             'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,

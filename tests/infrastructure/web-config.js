@@ -58,8 +58,10 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
         var allTestCases = {
             'GET api /humans.txt': okText,
+
             'GET cdn /humans.txt': okText,
             'GET cdn /js': forbidden,
+
             'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,

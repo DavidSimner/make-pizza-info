@@ -33,6 +33,9 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             expect(response.headers).to.deep.equal(expectedHeaders);
 
             expect(response.body).to.be.a('string');
+            if (!expectedContentType) {
+                expect(response.body).to.equal('');
+            }
         }
 
         var ok = expects.bind(this, 200, 'OK');

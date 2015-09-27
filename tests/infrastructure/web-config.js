@@ -45,6 +45,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
         var ok = expects.bind(this, 200, 'OK');
         var notFound = expects.bind(this, 404, 'Not Found', undefined, undefined);
+        var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
 
         var okPublic = ok.bind(this, undefined);
         var okPrivate = ok.bind(this, 'no-store');
@@ -99,6 +100,16 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET www /trace.json application/json': okPrivateJson,
             'GET www /web.config': okHtml,
         };
+        ['HEAD', 'POST',
+         'OPTIONS', 'PUT', 'DELETE', 'TRACE',
+         'PATCH',
+         'PROPFIND', 'PROPPATCH', 'MKCOL', 'COPY', 'MOVE', 'LOCK', 'UNLOCK'].forEach(function (method) {
+            ['api', 'cdn', 'www'].forEach(function (site) {
+                ['/', '/humans.txt', '/NotFound'].forEach(function (uri) {
+                    allTestCases[method + ' ' + site + ' ' + uri] = methodNotAllowed;
+                });
+            });
+        });
 
         function test (method, uri, acceptHeader, assert) {
             return rp({

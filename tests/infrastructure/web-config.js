@@ -21,7 +21,12 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 'x-frame-options': 'DENY',
                 'x-xss-protection': '1; mode=block',
             };
-            if (expectedStatusCode === 200) {
+            if (expectedCacheControl) {
+                expectedHeaders['accept-ranges'] = 'none';
+
+                expectedHeaders['cache-control'] = expectedCacheControl;
+            }
+            else if (expectedStatusCode === 200) {
                 expectedHeaders.etag = response.headers.etag;
                 expectedHeaders['last-modified'] = response.headers['last-modified'];
 
@@ -42,12 +47,15 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var notFound = expects.bind(this, 404, 'Not Found', undefined, undefined);
 
         var okPublic = ok.bind(this, undefined);
+        var okPrivate = ok.bind(this, 'no-store');
 
         var okCss = okPublic.bind(this, 'text/css; charset=utf-8');
         var okHtml = okPublic.bind(this, 'text/html; charset=utf-8');
         var okIcon = okPublic.bind(this, 'image/x-icon');
         var okJavascript = okPublic.bind(this, 'application/x-javascript; charset=utf-8');
         var okText = okPublic.bind(this, 'text/plain; charset=utf-8');
+
+        var okPrivateJson = okPrivate.bind(this, 'application/json; charset=utf-8');
 
         function testSinglePageApp (response) {
             okHtml(response);
@@ -67,6 +75,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET api /': notFound,
             'GET api /humans.txt': okText,
             'GET api /t': notFound,
+            'GET api /trace.json': okPrivateJson,
 
             'GET cdn /': notFound,
             'GET cdn /humans.txt': okText,
@@ -74,6 +83,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET cdn /js': notFound,
             'GET cdn /js/': notFound,
             'GET cdn /js/h': notFound,
+            'GET cdn /trace.json': okPrivateJson,
 
             'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,
@@ -83,6 +93,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET www /humans.txt': okText,
             'GET www /humans.txt/': okHtml,
             'GET www /humans.txt/2': okHtml,
+            'GET www /trace.json': okPrivateJson,
             'GET www /web.config': okHtml,
         };
 

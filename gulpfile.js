@@ -113,7 +113,7 @@ gulp.task('watch', ['css-watch'], function () {
 
     return gulp.src('.')
       .pipe(webserver({
-          fallback: 'error.404'
+          fallback: '/error.404'
       }));
 });
 

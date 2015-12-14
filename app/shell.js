@@ -1,5 +1,9 @@
-define(['plugins/router'], function (router) {
+define(['knockout', 'plugins/router'], function (ko, router) {
     function Shell() {
+        var throttledIsNavigating = ko.pureComputed(router.isNavigating).extend({ throttle: 1000 });
+        this.showNavigating = ko.pureComputed(function () {
+            return router.isNavigating() && throttledIsNavigating();
+        });
     }
 
     Shell.prototype.activate = function () {

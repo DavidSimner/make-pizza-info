@@ -8,7 +8,7 @@ define(['xr'], function (xr) {
         		provider: value.provider,
         		datacentre: value.datacentre,
         		server: value.server,
-        		https: value.https,
+        		scheme: value.https === 'on' ? 'https' : 'http',
         		domain: value.domain,
         		client: value.client
         	};

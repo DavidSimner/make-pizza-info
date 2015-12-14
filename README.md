@@ -23,5 +23,6 @@ This is the source code repository for the [Make Pizza](https://make-pizza.info/
   git clone git@github.com:DavidSimner/make-pizza-info.git
   cd make-pizza-info/
   npm install
-  node_modules/.bin/gulp watch
+  node_modules/.bin/gulp watch &
+  open http://localhost:8000/
 ```

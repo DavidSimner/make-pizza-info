@@ -11,6 +11,9 @@ define(['plugins/router'], function (router) {
             { route: 'trace',                   moduleId: 'modules/trace/index' },
         ])
         .mapUnknownRoutes('modules/not-found/index', 'not-found')
+        .on('router:navigation:complete', function () {
+            window.scrollTo(0, 0);
+        })
         .activate({
             pushState: true
         });

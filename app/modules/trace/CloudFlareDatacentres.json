@@ -44,7 +44,7 @@
 	"SJC": { "city": "San Jose", "country": "US", "region": "North America" },
 	"SYD": { "city": "Sydney", "country": "AU", "region": "Oceania" },
 	"TXL": { "city": "Berlin", "country": "DE", "region": "Europe" },
-	"VIE": { "city": "Vienna", "country": "IT", "region": "Europe" },
+	"VIE": { "city": "Vienna", "country": "AT", "region": "Europe" },
 	"WAW": { "city": "Warsaw", "country": "PL", "region": "Europe" },
 	"YYZ": { "city": "Toronto", "country": "CA", "region": "North America" }
 }

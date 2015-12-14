@@ -10,7 +10,7 @@ define(['xr'], function (xr) {
         		server: value.server,
         		scheme: value.https === 'on' ? 'https' : 'http',
         		domain: value.domain,
-        		client: value.client
+        		clients: value.client.match(/[^, ].*?(?=, |$)/g)
         	};
         });
     };

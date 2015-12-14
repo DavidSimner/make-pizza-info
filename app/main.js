@@ -4,6 +4,7 @@ requirejs.config({
         durandal: '../node_modules/durandal/js',
         jquery: '../node_modules/durandal/node_modules/jquery/dist/jquery.min',
         knockout: '../node_modules/durandal/node_modules/knockout/build/output/knockout-latest',
+        lodash: '../node_modules/lodash/index',
         xr: '../node_modules/xr/xr',
         'plugins/history': '../node_modules/durandal/js/plugins/history',
         'plugins/router': '../node_modules/durandal/js/plugins/router',

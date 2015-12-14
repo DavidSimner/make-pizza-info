@@ -2,6 +2,7 @@
     "private": true,
     "dependencies": {
         "durandal": "^2.1.0",
+        "lodash": "^3.10.1",
         "xr": "^0.1.13"
     },
     "devDependencies": {

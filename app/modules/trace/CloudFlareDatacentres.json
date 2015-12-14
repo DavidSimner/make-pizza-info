@@ -29,7 +29,7 @@
 	"MCT": { "city": "Muscat", "country": "OM", "region": "Middle East" },
 	"MDE": { "city": "Medellín", "country": "CO", "region": "South America" },
 	"MIA": { "city": "Miami", "country": "US", "region": "North America" },
-	"MLE": { "city": "Melbourne", "country": "AU", "region": "Oceania" },
+	"MEL": { "city": "Melbourne", "country": "AU", "region": "Oceania" },
 	"MRS": { "city": "Marseille", "country": "FR", "region": "Europe" },
 	"MXP": { "city": "Milan", "country": "IT", "region": "Europe" },
 	"NRT": { "city": "Tokyo", "country": "JP", "region": "Asia" },

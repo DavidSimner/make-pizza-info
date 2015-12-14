@@ -7,7 +7,7 @@
 	"DFW": { "city": "Dallas", "country": "US", "region": "North America" },
 	"DOH": { "city": "Doha", "country": "QA", "region": "Middle East" },
 	"DUB": { "city": "Dublin", "country": "IE", "region": "Europe" },
-	"DUS": { "city": "Dusseldorf", "country": "DE", "region": "Europe" },
+	"DUS": { "city": "Düsseldorf", "country": "DE", "region": "Europe" },
 	"DXB": { "city": "Dubai", "country": "AE", "region": "Middle East" },
 	"EWR": { "city": "Newark", "country": "US", "region": "North America" },
 	"EZE": { "city": "Buenos Aires", "country": "AR", "region": "South America" },

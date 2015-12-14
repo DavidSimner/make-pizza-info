@@ -46,5 +46,5 @@
 	"TXL": { "city": "Berlin", "country": "DE", "region": "Europe" },
 	"VIE": { "city": "Vienna", "country": "AT", "region": "Europe" },
 	"WAW": { "city": "Warsaw", "country": "PL", "region": "Europe" },
-	"YYZ": { "city": "Toronto", "state": "Ontario", "country": "CA", "region": "North America" }
+	"YYZ": { "city": "Toronto", "state": "Ontario", "country": "CA", "region": "North America" },
 }

@@ -1,5 +1,5 @@
-define(['lodash', 'xr', 'text!modules/trace/CloudFlareDatacentres.json'], function (_, xr, config) {
-    var datacentres = JSON.parse(config);
+define(['lodash', 'xr', 'text!modules/trace/CloudFlareDatacentres.json'], function (_, xr, datacentres) {
+    datacentres = JSON.parse(datacentres);
 
     function CloudFlareTraceProvider() {
     }

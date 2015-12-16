@@ -6,7 +6,7 @@ define(['xr'], function (xr) {
         return xr.get('/trace.json').then(function (value) {
         	return {
         		provider: value.provider,
-        		datacentre: value.datacentre,
+        		location: value.location,
         		server: value.server,
         		scheme: value.https === 'on' ? 'https' : 'http',
         		domain: value.domain,

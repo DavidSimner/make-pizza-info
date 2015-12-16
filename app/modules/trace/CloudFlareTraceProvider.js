@@ -16,7 +16,7 @@ define(['lodash', 'xr', 'text!modules/trace/CloudFlareDatacentres.json'], functi
         }).then(function (value) {
         	return {
         		provider: 'CloudFlare',
-        		datacentre: datacentres[value.colo],
+        		location: datacentres[value.colo],
         		server: value.fl,
         		scheme: value.visit_scheme,
         		domain: value.h,

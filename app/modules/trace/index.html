@@ -1,2 +1,10 @@
-<h1>Coming soon...</h1>
-<p>This trace page is still being built :)</p>
+<h1>Trace</h1>
+
+<section data-bind="foreach: trace">
+	<section style="border: 1px solid blue; margin: 8px;">
+		<p data-bind="text: provider" />
+		<p data-bind="text: location" />
+		<p data-bind="text: ipAddress" />
+		<p data-bind="text: url" />
+	</section>
+</section>

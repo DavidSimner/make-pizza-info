@@ -1,8 +1,15 @@
-define(['lodash', 'xr', 'text!modules/trace/CloudFlareDatacentres.json'], function (_, xr, datacentres) {
+define(['lodash', 'xr', 'modules/trace/IpAddressRange', 'text!modules/trace/CloudFlareDatacentres.json', 'text!modules/trace/CloudFlareIpAddressRanges.json'], function (_, xr, IpAddressRange, datacentres, ipAddressRanges) {
     datacentres = JSON.parse(datacentres);
+    ipAddressRanges = JSON.parse(ipAddressRanges);
 
     function CloudFlareTraceProvider() {
     }
+
+    CloudFlareTraceProvider.prototype.canGet = function (ipAddress) {
+        return ipAddressRanges.some(function (x) {
+            return new IpAddressRange(x).contains(ipAddress);
+        });
+    };
 
     CloudFlareTraceProvider.prototype.get = function () {
         return xr.get('/cdn-cgi/trace', undefined, { raw: true }).then(function (value) {

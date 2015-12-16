@@ -59,7 +59,9 @@ define(['lodash', 'modules/trace/CloudFlareTraceProvider', 'modules/trace/Micros
 			}
 
 			if (todo.length === 0) {
-				return ret;
+				return {
+					trace: ret
+				};
 			}
 			current = todo.pop();
 

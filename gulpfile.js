@@ -60,7 +60,7 @@ gulp.task('css-deploy', function () {
 gulp.task('durandal', function () {
     return durandal({
             almond: true,
-            minify: true,
+            minify: false,
             extraModules: [
                 'plugins/widget'
             ],

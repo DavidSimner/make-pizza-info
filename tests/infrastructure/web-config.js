@@ -50,6 +50,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var ok = expects.bind(this, 200, 'OK');
         var notFound = expects.bind(this, 404, 'Not Found', undefined, undefined);
         var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
+        var notAcceptable = expects.bind(this, 406, 'Not Acceptable', 'no-store', 'text/html');
 
         var okPublic = ok.bind(this, undefined);
         var okPrivate = ok.bind(this, 'no-store');
@@ -83,6 +84,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET api /t': notFound,
             'GET api /trace.json': okPrivateJson,
             'GET api /trace.json application/json': okPrivateJson,
+            'GET api /trace.json application/xml': notAcceptable,
             'GET api /web.config': notFound,
 
             'GET cdn /': notFound,
@@ -94,6 +96,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET cdn /js/h': notFound,
             'GET cdn /trace.json': okPrivateJson,
             'GET cdn /trace.json application/json': okPrivateJson,
+            'GET cdn /trace.json application/xml': notAcceptable,
             'GET cdn /web.config': notFound,
 
             'GET www /': testSinglePageApp,
@@ -107,6 +110,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET www /humans.txt/2': okHtml,
             'GET www /trace.json': okPrivateJson,
             'GET www /trace.json application/json': okPrivateJson,
+            'GET www /trace.json application/xml': notAcceptable,
             'GET www /web.config': okHtml,
         };
         ['HEAD', 'POST',

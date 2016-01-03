@@ -39,6 +39,11 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             if (expectedContentType) {
                 expectedHeaders['content-type'] = expectedContentType;
             }
+            if (response.request.headers.Origin) {
+                expectedHeaders['access-control-allow-origin'] = response.request.headers.Origin;
+
+                expectedHeaders['access-control-allow-credentials'] = 'true';
+            }
             expect(response.headers).to.deep.equal(expectedHeaders);
 
             expect(response.body).to.be.a('string');
@@ -75,11 +80,11 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
             var linkHref = response.body.match(/<link rel="stylesheet" href=".*(\/css\/.+?)"/)[1];
             var linkUri = 'https://make-pizza-info-cdn.azurewebsites.net' + linkHref;
-            var linkPromise = test('GET', linkUri, undefined, okCss);
+            var linkPromise = test('GET', linkUri, undefined, undefined, okCss);
 
             var scriptSrc = response.body.match(/<script src=".*(\/js\/.+?)"/)[1];
             var scriptUri = 'https://make-pizza-info-cdn.azurewebsites.net' + scriptSrc;
-            var scriptPromise = test('GET', scriptUri, undefined, okJavascript);
+            var scriptPromise = test('GET', scriptUri, undefined, undefined, okJavascript);
 
             return Promise.all([linkPromise, scriptPromise]);
         }
@@ -143,12 +148,13 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             });
         });
 
-        function test (method, uri, acceptHeader, assert) {
+        function test (method, uri, acceptHeader, originHeader, assert) {
             return rp({
                     method: method,
                     uri: uri,
                     headers: {
-                        'Accept': acceptHeader
+                        'Accept': acceptHeader,
+                        'Origin': originHeader
                     },
                     gzip: true,
                     simple: false,
@@ -163,8 +169,9 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             var method = parts[0];
             var uri = 'https://make-pizza-info-' + parts[1] + '.azurewebsites.net' + parts[2];
             var acceptHeader = parts[3];
+            var originHeader = parts[4];
             var assert = allTestCases[testCase];
-            tdd.test(testCase + ' ' + assert.name, test.bind(this, method, uri, acceptHeader, assert));
+            tdd.test(testCase + ' ' + assert.name, test.bind(this, method, uri, acceptHeader, originHeader, assert));
         }
     });
 });

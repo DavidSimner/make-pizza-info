@@ -50,7 +50,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var ok = expects.bind(this, 200, 'OK');
         var notFound = expects.bind(this, 404, 'Not Found', undefined, undefined);
         var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
-        var notAcceptable = expects.bind(this, 406, 'Not Acceptable', 'no-store', 'text/html');
+        var notAcceptable = expects.bind(this, 406, 'Not Acceptable', undefined, 'text/html');
 
         var okPublic = ok.bind(this, undefined);
         var okPrivate = ok.bind(this, 'no-store');

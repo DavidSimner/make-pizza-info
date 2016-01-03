@@ -142,7 +142,7 @@ function deploy (cwd, url, cb) {
     function setAttributes (err) {
         if (err) return cb(err);
 
-        fs.writeFileSync(cwd + '/.gitattributes', '* -text');
+        fs.writeFileSync('.gitattributes', '* -text');
 
         return add();
     }

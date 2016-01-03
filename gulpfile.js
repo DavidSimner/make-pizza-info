@@ -90,8 +90,14 @@ gulp.task('www', function () {
 gulp.task('404', ['css-deploy', 'durandal'], function () {
     return gulp.src('error.404')
         .pipe(htmlreplace({
-            css: css,
-            js: js
+            css: {
+                src: css,
+                tpl: '<link rel="stylesheet" href="%s" integrity="%s">'
+            },
+            js: {
+                src: js,
+                tpl: '<script src="%s" integrity="%s"></script>'
+            }
         }))
         .pipe(gulp.dest('dist/www'));
 });

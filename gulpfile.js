@@ -92,11 +92,11 @@ gulp.task('404', ['css-deploy', 'durandal'], function () {
         .pipe(htmlreplace({
             css: {
                 src: css,
-                tpl: '<link rel="stylesheet" href="%s" integrity="%s" crossorigin="use-credentials">'
+                tpl: '<link rel="stylesheet" href="%s" crossorigin="use-credentials" integrity="%s">'
             },
             js: {
                 src: js,
-                tpl: '<script src="%s" integrity="%s" crossorigin="use-credentials"></script>'
+                tpl: '<script src="%s" crossorigin="use-credentials" integrity="%s"></script>'
             }
         }))
         .pipe(gulp.dest('dist/www'));

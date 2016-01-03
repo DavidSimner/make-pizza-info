@@ -80,6 +80,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var allTestCases = {
             'GET api /': notFound,
             'GET api /humans.txt': okText,
+            'GET api /humans.txt text/plain': okText,
+            'GET api /humans.txt text/html': notAcceptable,
             'GET api /humans.txt/': notFound,
             'GET api /t': notFound,
             'GET api /trace.json': okPrivateJson,
@@ -89,6 +91,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
             'GET cdn /': notFound,
             'GET cdn /humans.txt': okText,
+            'GET cdn /humans.txt text/plain': okText,
+            'GET cdn /humans.txt text/html': notAcceptable,
             'GET cdn /humans.txt/': notFound,
             'GET cdn /j': notFound,
             'GET cdn /js': notFound,
@@ -106,6 +110,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET www /humans.': okHtml,
             'GET www /humans.tx': okHtml,
             'GET www /humans.txt': okText,
+            'GET www /humans.txt text/plain': okText,
+            'GET www /humans.txt text/html': notAcceptable,
             'GET www /humans.txt/': okHtml,
             'GET www /humans.txt/2': okHtml,
             'GET www /trace.json': okPrivateJson,

@@ -52,7 +52,7 @@ gulp.task('css-deploy', function () {
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
             var newPath = 'css/' + file.revHash + '.css';
-            var integrity = sri.getSRIString(file.contents);
+            var integrity = sri.getSRIString(file.contents.toString());
             css.push(['https://cdn.make-pizza.info/' + newPath, integrity]);
             return newPath;
         }))
@@ -75,7 +75,7 @@ gulp.task('durandal', function () {
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
             var newPath = 'js/' + file.revHash + '.js';
-            var integrity = sri.getSRIString(file.contents);
+            var integrity = sri.getSRIString(file.contents.toString());
             js.push(['https://cdn.make-pizza.info/' + newPath, integrity]);
             return newPath;
         }))

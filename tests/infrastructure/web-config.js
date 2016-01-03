@@ -144,6 +144,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                     headers: {
                         'Accept': acceptHeader
                     },
+                    gzip: true,
                     simple: false,
                     followRedirect: false,
                     resolveWithFullResponse: true

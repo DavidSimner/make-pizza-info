@@ -49,7 +49,7 @@ gulp.task('css-watch', function () {
 gulp.task('css-deploy', function () {
     return css_shared([postcssnano()])
         .pipe(rev())
-        .pipe(simplerename(function (_, file) {
+        .pipe(simplerename(function (currentPath, file) {
             var newPath = 'css/' + file.revHash + '.css';
             css.push('https://cdn.make-pizza.info/' + newPath);
             return newPath;
@@ -71,7 +71,7 @@ gulp.task('durandal', function () {
         .pipe(ignore.exclude('*.map'))
         .pipe(replace(/^([^']*)\/\/#.*$/gm, '$1'))
         .pipe(rev())
-        .pipe(simplerename(function (_, file) {
+        .pipe(simplerename(function (currentPath, file) {
             var newPath = 'js/' + file.revHash + '.js';
             js.push('https://cdn.make-pizza.info/' + newPath);
             return newPath;

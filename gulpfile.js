@@ -80,7 +80,7 @@ gulp.task('durandal', function () {
 });
 
 gulp.task('www', function () {
-    return gulp.src(['www/**', 'web.config', 'trace.json', 'favicon.ico'])
+    return gulp.src(['www/**', 'web.config', 'trace.json', 'favicon.ico', 'noscript.txt'])
         .pipe(gulp.dest('dist/www'));
 });
 

@@ -48,7 +48,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         }
 
         var ok = expects.bind(this, 200, 'OK');
-        var notFound = expects.bind(this, 404, 'Not Found', undefined, undefined);
+        var notFoundThatIsBlank = expects.bind(this, 404, 'Not Found', undefined, undefined);
         var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
         var notAcceptable = expects.bind(this, 406, 'Not Acceptable', undefined, 'text/html');
 
@@ -78,30 +78,30 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         }
 
         var allTestCases = {
-            'GET api /': notFound,
+            'GET api /': notFoundThatIsBlank,
             'GET api /humans.txt': okText,
             'GET api /humans.txt text/plain': okText,
             'GET api /humans.txt text/html': notAcceptable,
-            'GET api /humans.txt/': notFound,
-            'GET api /t': notFound,
+            'GET api /humans.txt/': notFoundThatIsBlank,
+            'GET api /t': notFoundThatIsBlank,
             'GET api /trace.json': okPrivateJson,
             'GET api /trace.json application/json': okPrivateJson,
             'GET api /trace.json application/xml': notAcceptable,
-            'GET api /web.config': notFound,
+            'GET api /web.config': notFoundThatIsBlank,
 
-            'GET cdn /': notFound,
+            'GET cdn /': notFoundThatIsBlank,
             'GET cdn /humans.txt': okText,
             'GET cdn /humans.txt text/plain': okText,
             'GET cdn /humans.txt text/html': notAcceptable,
-            'GET cdn /humans.txt/': notFound,
-            'GET cdn /j': notFound,
-            'GET cdn /js': notFound,
-            'GET cdn /js/': notFound,
-            'GET cdn /js/h': notFound,
+            'GET cdn /humans.txt/': notFoundThatIsBlank,
+            'GET cdn /j': notFoundThatIsBlank,
+            'GET cdn /js': notFoundThatIsBlank,
+            'GET cdn /js/': notFoundThatIsBlank,
+            'GET cdn /js/h': notFoundThatIsBlank,
             'GET cdn /trace.json': okPrivateJson,
             'GET cdn /trace.json application/json': okPrivateJson,
             'GET cdn /trace.json application/xml': notAcceptable,
-            'GET cdn /web.config': notFound,
+            'GET cdn /web.config': notFoundThatIsBlank,
 
             'GET www /': testSinglePageApp,
             'GET www /favicon.ico': okIcon,

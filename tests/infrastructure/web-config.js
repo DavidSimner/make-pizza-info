@@ -62,11 +62,11 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         function testSinglePageApp (response) {
             okHtml(response);
 
-            var linkHref = response.body.match(/<link rel="stylesheet" href=".*(\/css\/.+)">/)[1];
+            var linkHref = response.body.match(/<link rel="stylesheet" href=".*(\/css\/.+?)"/)[1];
             var linkUri = 'https://make-pizza-info-cdn.azurewebsites.net' + linkHref;
             var linkPromise = test('GET', linkUri, undefined, okCss);
 
-            var scriptSrc = response.body.match(/<script src=".*(\/js\/.+)"><\/script>/)[1];
+            var scriptSrc = response.body.match(/<script src=".*(\/js\/.+?)"/)[1];
             var scriptUri = 'https://make-pizza-info-cdn.azurewebsites.net' + scriptSrc;
             var scriptPromise = test('GET', scriptUri, undefined, okJavascript);
 

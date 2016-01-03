@@ -56,6 +56,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             if (!expectedContentType) {
                 expect(response.body).to.equal('');
             }
+            expect(response.body).to.not.include('\r\n');
         }
 
         var ok = expects.bind(this, 200, 'OK');

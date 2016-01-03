@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="/dist/main.css">
         <!-- endbuild -->
         <title>Make Pizza!</title>
-        <noscript><meta http-equiv="refresh" content="0;url=/noscript.txt"></noscript>
+        <noscript><meta http-equiv="refresh" content="0; url=/noscript.txt"></noscript>
     </head>
     <body id="applicationHost">
         <!-- build:js -->

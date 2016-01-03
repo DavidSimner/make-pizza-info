@@ -50,9 +50,9 @@ gulp.task('css-deploy', function () {
     return css_shared([postcssnano()])
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
-            var path = 'css/' + file.revHash + '.css';
-            css.push('https://cdn.make-pizza.info/' + path);
-            return path;
+            var newPath = 'css/' + file.revHash + '.css';
+            css.push('https://cdn.make-pizza.info/' + newPath);
+            return newPath;
         }))
         .pipe(gulp.dest('dist/cdn'));
 });
@@ -72,9 +72,9 @@ gulp.task('durandal', function () {
         .pipe(replace(/^([^']*)\/\/#.*$/gm, '$1'))
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
-            var path = 'js/' + file.revHash + '.js';
-            js.push('https://cdn.make-pizza.info/' + path);
-            return path;
+            var newPath = 'js/' + file.revHash + '.js';
+            js.push('https://cdn.make-pizza.info/' + newPath);
+            return newPath;
         }))
         .pipe(gulp.dest('dist/cdn'));
 });

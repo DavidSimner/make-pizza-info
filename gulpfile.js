@@ -17,6 +17,7 @@ var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var simplerename = require('gulp-simple-rename');
 var webserver = require('gulp-webserver');
+var sri = require('sri');
 
 
 var css = [];

@@ -26,6 +26,7 @@
         "postcss-import": "^7.0.0",
         "postcss-nested": "^1.0.0",
         "postcss-simple-vars": "^1.0.0",
-        "request-promise": "^0.4.3"
+        "request-promise": "^0.4.3",
+        "sri": "^1.1.0"
     }
 }

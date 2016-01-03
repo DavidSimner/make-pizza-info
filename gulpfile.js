@@ -136,7 +136,15 @@ function deploy (cwd, url, cb) {
     };
 
     function init () {
-        return git.init(options, add);
+        return git.init(options, setAttributes);
+    }
+
+    function setAttributes (err) {
+        if (err) return cb(err);
+
+        fs.writeFileSync('.gitattributes', '* -text');
+
+        return add();
     }
 
     function add (err) {

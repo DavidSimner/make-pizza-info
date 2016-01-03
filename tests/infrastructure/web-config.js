@@ -26,7 +26,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             if (expectedCacheControl) {
                 expectedHeaders['accept-ranges'] = 'none';
 
-                delete expectedHeaders['vary'];
+                delete expectedHeaders.vary;
 
                 expectedHeaders['cache-control'] = expectedCacheControl;
             }

@@ -51,6 +51,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var notFoundThatIsBlank = expects.bind(this, 404, 'Not Found', undefined, undefined);
         var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
         var notAcceptable = expects.bind(this, 406, 'Not Acceptable', undefined, 'text/html');
+        var notAcceptableThatIsBlank = expects.bind(this, 406, 'Not Acceptable', undefined, undefined);
 
         var okPublic = ok.bind(this, undefined);
         var okPrivate = ok.bind(this, 'no-store');
@@ -79,6 +80,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
         var allTestCases = {
             'GET api /': notFoundThatIsBlank,
+            'GET api / text/plain': notFoundThatIsBlank,
+            'GET api / text/html': notFoundThatIsBlank,
             'GET api /humans.txt': okText,
             'GET api /humans.txt text/plain': okText,
             'GET api /humans.txt text/html': notAcceptable,
@@ -90,6 +93,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET api /web.config': notFoundThatIsBlank,
 
             'GET cdn /': notFoundThatIsBlank,
+            'GET cdn / text/plain': notFoundThatIsBlank,
+            'GET cdn / text/html': notFoundThatIsBlank,
             'GET cdn /humans.txt': okText,
             'GET cdn /humans.txt text/plain': okText,
             'GET cdn /humans.txt text/html': notAcceptable,
@@ -104,6 +109,8 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET cdn /web.config': notFoundThatIsBlank,
 
             'GET www /': testSinglePageApp,
+            'GET www / text/plain': notAcceptableThatIsBlank,
+            'GET www / text/html': notAcceptableThatIsBlank,
             'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,
             'GET www /humans': okHtml,

@@ -71,7 +71,7 @@ gulp.task('durandal', function () {
             }
         })
         .pipe(ignore.exclude('*.map'))
-        .pipe(replace(/^([^']*)\/\/#.*$/gm, '$1'))
+        .pipe(replace(/^([^'"]*)\/\/#.*$/gm, '$1'))
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
             var newPath = 'js/' + file.revHash + '.js';

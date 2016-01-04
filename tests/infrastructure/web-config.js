@@ -57,6 +57,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 expect(response.body).to.equal('');
             }
             expect(response.body).to.not.include('\r\n');
+            expect(response.body).to.not.include('//# sourceMappingURL');
         }
 
         var ok = expects.bind(this, 200, 'OK');

@@ -16,7 +16,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 'server': 'Microsoft-IIS/8.0',
 
                 'arr-disable-session-affinity': 'true',
-                'content-security-policy': "style-src https://cdn.make-pizza.info/css/; sandbox allow-scripts allow-same-origin; script-src https://cdn.make-pizza.info/js/ 'unsafe-eval'; connect-src https://make-pizza.info/trace.json https://make-pizza.info/cdn-cgi/trace; default-src 'none'; base-uri 'none'; form-action 'none'; referrer no-referrer; frame-ancestors 'none'; reflected-xss block",
+                'content-security-policy': "style-src https://cdn.make-pizza.info/css/; sandbox allow-scripts allow-same-origin; script-src https://cdn.make-pizza.info/js/ 'unsafe-eval'; connect-src https://make-pizza.info/trace.json https://make-pizza.info/cdn-cgi/trace; default-src 'none'; base-uri 'none'; form-action 'none'; referrer no-referrer; frame-ancestors 'none'; reflected-xss block; report-uri https://report-uri.io/report/makepizza",
                 'strict-transport-security': 'max-age=15552000; includeSubDomains; preload',
                 'vary': 'Accept, Accept-Encoding, Origin',
                 'x-content-type-options': 'nosniff',

@@ -67,10 +67,10 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         }
 
         var ok = expects.bind(this, 200, 'OK');
-        var notFoundThatIsBlank = expects.bind(this, 404, 'Not Found', undefined, undefined);
+        var notFoundThatIsBlank = expects.bind(this, 404, 'Not Found', undefined, undefined); //TODO: BUG: fix this
         var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
         var notAcceptable = expects.bind(this, 406, 'Not Acceptable', undefined, 'text/html');
-        var notAcceptableThatIsBlank = expects.bind(this, 406, 'Not Acceptable', undefined, undefined);
+        var notAcceptableThatIsBlank = expects.bind(this, 406, 'Not Acceptable', undefined, undefined); //TODO: BUG: fix this
 
         var okPublic = ok.bind(this, undefined);
         var okPrivate = ok.bind(this, 'no-store');
@@ -129,7 +129,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
             'GET www /': testSinglePageApp,
             'GET www / text/plain': notAcceptableThatIsBlank,
-            'GET www / text/html': notAcceptableThatIsBlank,
+            'GET www / text/html': notAcceptableThatIsBlank, //TODO: BUG: fix this
             'GET www /favicon.ico': okIcon,
             'GET www /human': okHtml,
             'GET www /humans': okHtml,

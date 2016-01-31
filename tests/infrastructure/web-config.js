@@ -53,6 +53,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             }
             expect(response.headers).to.deep.equal(expectedHeaders);
 
+            var responseBodyAsString = response.body;
             expect(response.body).to.be.a('string');
             if (response.request.method !== 'HEAD') {
                 var contentType = response.headers['content-type'];
@@ -61,10 +62,10 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 expect(bodyLength.toString()).to.equal(response.headers['content-length']);
             }
             if (!expectedContentType) {
-                expect(response.body).to.equal('');
+                expect(responseBodyAsString).to.equal('');
             }
-            expect(response.body).to.not.include('\r\n');
-            expect(response.body).to.not.include('//# sourceMappingURL');
+            expect(responseBodyAsString).to.not.include('\r\n');
+            expect(responseBodyAsString).to.not.include('//# sourceMappingURL');
         }
 
         var ok = expects.bind(this, 200, 'OK');
@@ -89,12 +90,13 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         function testSinglePageApp (response) {
             okHtml(response);
 
+            var responseBodyAsString = response.body;
 
-            var linkHref = response.body.match(/<link rel="stylesheet" href=".*(\/css\/.+?)"/)[1];
+            var linkHref = responseBodyAsString.match(/<link rel="stylesheet" href=".*(\/css\/.+?)"/)[1];
             var linkUri = 'https://make-pizza-info-cdn.azurewebsites.net' + linkHref;
             var linkPromise = test('GET', linkUri, undefined, 'https://make-pizza-info-www.azurewebsites.net', okCss);
 
-            var scriptSrc = response.body.match(/<script src=".*(\/js\/.+?)"/)[1];
+            var scriptSrc = responseBodyAsString.match(/<script src=".*(\/js\/.+?)"/)[1];
             var scriptUri = 'https://make-pizza-info-cdn.azurewebsites.net' + scriptSrc;
             var scriptPromise = test('GET', scriptUri, undefined, 'https://make-pizza.info', okJavascript);
 

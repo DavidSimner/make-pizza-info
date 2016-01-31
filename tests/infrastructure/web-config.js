@@ -36,6 +36,11 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 expectedHeaders['last-modified'] = response.headers['last-modified'];
 
                 expectedHeaders['accept-ranges'] = 'bytes';
+                expectedHeaders['cache-control'] = 'public,max-age=' + (expectedContentType === 'application/x-javascript; charset=utf-8' ||
+                                                                        expectedContentType === 'text/css; charset=utf-8' ? '15552000' : '300');
+            }
+            else if (expectedStatusCode === 406) { //TODO: BUG: fix this
+                expectedHeaders['cache-control'] = 'public,max-age=300';
             }
             if (expectedContentType) {
                 expectedHeaders['content-type'] = expectedContentType;

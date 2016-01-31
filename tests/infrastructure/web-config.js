@@ -53,7 +53,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             }
             expect(response.headers).to.deep.equal(expectedHeaders);
 
-            var responseBodyAsString = response.body;
+            var responseBodyAsString = response.body.toString();
             expect(responseBodyAsString).to.be.a('string');
             if (response.request.method !== 'HEAD') {
                 var contentType = response.headers['content-type'];
@@ -90,7 +90,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         function testSinglePageApp (response) {
             okHtml(response);
 
-            var responseBodyAsString = response.body;
+            var responseBodyAsString = response.body.toString();
 
             var linkHref = responseBodyAsString.match(/<link rel="stylesheet" href=".*(\/css\/.+?)"/)[1];
             var linkUri = 'https://make-pizza-info-cdn.azurewebsites.net' + linkHref;
@@ -175,6 +175,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                     gzip: true,
                     simple: false,
                     followRedirect: false,
+                    encoding: null,
                     resolveWithFullResponse: true
                 })
                 .then(assert);

@@ -57,9 +57,12 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             expect(responseBodyAsString).to.be.a('string');
             if (response.request.method !== 'HEAD') {
                 var contentType = response.headers['content-type'];
-                var bodyLength = contentType && contentType.includes('utf-8') ? unescape(encodeURIComponent(response.body)).length
-                                                                              : response.body.length;
+                var bodyLength = response.body.length;
                 expect(bodyLength.toString()).to.equal(response.headers['content-length']);
+                if (contentType && contentType.includes('utf-8')) {
+                    var utf8Length = unescape(encodeURIComponent(responseBodyAsString)).length;
+                    expect(utf8Length).to.equal(bodyLength);
+                }
             }
             if (!expectedContentType) {
                 expect(responseBodyAsString).to.equal('');

@@ -56,9 +56,10 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             var responseBodyAsString = response.body.toString();
             expect(responseBodyAsString).to.be.a('string');
             if (response.request.method !== 'HEAD') {
-                var contentType = response.headers['content-type'];
                 var bodyLength = response.body.length;
                 expect(bodyLength.toString()).to.equal(response.headers['content-length']);
+                
+                var contentType = response.headers['content-type'];
                 if (contentType && contentType.includes('utf-8')) {
                     var utf8Length = unescape(encodeURIComponent(responseBodyAsString)).length;
                     expect(utf8Length).to.equal(bodyLength);

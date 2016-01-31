@@ -69,6 +69,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var ok = expects.bind(this, 200, 'OK');
         var notFoundThatIsBlank = expects.bind(this, 404, 'Not Found', undefined, undefined); //TODO: BUG: fix this
         var methodNotAllowed = expects.bind(this, 404, 'Not Found', undefined, 'text/html');
+        var methodNotAllowedThatIsBlank = expects.bind(this, 404, 'Not Found', undefined, undefined); //TODO: BUG: fix this
         var notAcceptable = expects.bind(this, 406, 'Not Acceptable', undefined, 'text/html');
         var notAcceptableThatIsBlank = expects.bind(this, 406, 'Not Acceptable', undefined, undefined); //TODO: BUG: fix this
 
@@ -153,6 +154,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
                 ['/', '/humans.txt', '/humans.txt/', '/NotFound', '/trace.json'].forEach(function (uri) {
                     allTestCases[method + ' ' + site + ' ' + uri] = methodNotAllowed;
                 });
+                allTestCases[method + ' ' + site + ' /web.config'] = method !== 'HEAD' && site === 'www' ? okHtml : methodNotAllowedThatIsBlank; //TODO: BUG: fix this
             });
         });
 

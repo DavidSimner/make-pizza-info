@@ -37,6 +37,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
 
                 expectedHeaders['accept-ranges'] = 'bytes';
                 expectedHeaders['cache-control'] = 'public,max-age=' + (expectedContentType === 'application/x-javascript; charset=utf-8' ||
+                                                                        expectedContentType === 'image/jpeg' ||
                                                                         expectedContentType === 'text/css; charset=utf-8' ? '15552000' : '300');
             }
             else if (expectedStatusCode === 406) { //TODO: BUG: fix this
@@ -80,6 +81,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
         var okHtml = okPublic.bind(this, 'text/html; charset=utf-8');
         var okIcon = okPublic.bind(this, 'image/x-icon');
         var okJavascript = okPublic.bind(this, 'application/x-javascript; charset=utf-8');
+        var okJpeg = okPublic.bind(this, 'image/jpeg');
         var okText = okPublic.bind(this, 'text/plain; charset=utf-8');
 
         var okPrivateJson = okPrivate.bind(this, 'application/json; charset=utf-8');
@@ -120,6 +122,7 @@ define(['intern!tdd', 'intern/chai!expect', 'request-promise'], function (tdd, e
             'GET cdn /humans.txt text/html': notAcceptable,
             'GET cdn /humans.txt/': notFoundThatIsBlank,
             'GET cdn /j': notFoundThatIsBlank,
+            'GET cdn /jpeg/27eca5741c.jpeg': okJpeg,
             'GET cdn /js': notFoundThatIsBlank,
             'GET cdn /js/': notFoundThatIsBlank,
             'GET cdn /js/h': notFoundThatIsBlank,

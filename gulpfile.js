@@ -44,7 +44,7 @@ function css_shared (processors) {
 
 gulp.task('css-watch', function () {
     return css_shared([])
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/cdn/css'));
 });
 
 gulp.task('css-deploy', function () {

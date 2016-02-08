@@ -34,21 +34,22 @@ gulp.task('cdn', function () {
         .pipe(gulp.dest('dist/cdn'));
 });
 
-function css_shared (processors) {
+function css_pipe (processors) {
     processors.unshift(postcsssimplevars);
     processors.unshift(postcssnested);
     processors.unshift(postcssimport({ glob: true }));
-    return gulp.src('app/main.css')
-        .pipe(postcss(processors));
+    return postcss(processors);
 }
 
 gulp.task('css-watch', function () {
-    return css_shared([])
+    return gulp.src('app/main.css')
+        .pipe(css_pipe([]))
         .pipe(gulp.dest('dist/cdn/css'));
 });
 
 gulp.task('css-deploy', function () {
-    return css_shared([postcssnano()])
+    return gulp.src('app/main.css')
+        .pipe(css_pipe([postcssnano()]))
         .pipe(rev())
         .pipe(simplerename(function (_, file) {
             var newPath = 'css/' + file.revHash + '.css';

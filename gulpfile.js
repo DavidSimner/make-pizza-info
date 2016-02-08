@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var durandal = require('gulp-durandal');
 var git = require('gulp-git');
 var htmlreplace = require('gulp-html-replace');
+var gulpif = require('gulp-if');
 var ignore = require('gulp-ignore');
 var intern = require('gulp-intern');
 var jshint = require('gulp-jshint');
@@ -15,6 +16,7 @@ var postcssnested = require('postcss-nested');
 var postcsssimplevars = require('postcss-simple-vars');
 var replace = require('gulp-replace');
 var rev = require('gulp-rev');
+var revcssurl = require('gulp-rev-css-url');
 var simplerename = require('gulp-simple-rename');
 var webserver = require('gulp-webserver');
 var sri = require('sri');
@@ -24,13 +26,26 @@ var css = [];
 var js = [];
 
 
+function isExtension (file, extension) {
+    return file.history[0].endsWith(extension);
+}
+
+function isCss (file) {
+    return isExtension(file, '.css');
+}
+
+function isJpeg (file) {
+    return isExtension(file, '.jpeg');
+}
+
+
 gulp.task('api', function () {
     return gulp.src(['api/**', 'web.config', 'trace.json'])
         .pipe(gulp.dest('dist/api'));
 });
 
 gulp.task('cdn', function () {
-    return gulp.src(['cdn/**', 'web.config', 'trace.json', 'jpe[g]/*'])
+    return gulp.src(['cdn/**', 'web.config', 'trace.json'])
         .pipe(gulp.dest('dist/cdn'));
 });
 
@@ -48,15 +63,20 @@ gulp.task('css-watch', function () {
 });
 
 gulp.task('css-deploy', function () {
-    return gulp.src('app/main.css')
-        .pipe(css_pipe([postcssnano()]))
+    return gulp.src(['jpe[g]/*.jpeg', 'app/main.css'])
+        .pipe(gulpif(isCss, css_pipe([postcssnano()])))
         .pipe(rev())
-        .pipe(simplerename(function (_, file) {
+        .pipe(gulpif(isJpeg, simplerename(function (_, file) {
+            var newPath = 'jpeg/' + file.revHash + '.jpeg';
+            return newPath;
+        })))
+        .pipe(revcssurl())
+        .pipe(gulpif(isCss, simplerename(function (_, file) {
             var newPath = 'css/' + file.revHash + '.css';
             var integrity = sri.getSRIString(file.contents);
             css.push(['https://cdn.make-pizza.info/' + newPath, integrity]);
             return newPath;
-        }))
+        })))
         .pipe(gulp.dest('dist/cdn'));
 });
 

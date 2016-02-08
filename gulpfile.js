@@ -30,7 +30,7 @@ gulp.task('api', function () {
 });
 
 gulp.task('cdn', function () {
-    return gulp.src(['cdn/**', 'web.config', 'trace.json'])
+    return gulp.src(['cdn/**', 'web.config', 'trace.json', 'jpe[g]/*'])
         .pipe(gulp.dest('dist/cdn'));
 });
 
@@ -44,7 +44,7 @@ function css_pipe (processors) {
 gulp.task('css-watch', function () {
     return gulp.src('app/main.css')
         .pipe(css_pipe([]))
-        .pipe(gulp.dest('dist/cdn/css'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('css-deploy', function () {

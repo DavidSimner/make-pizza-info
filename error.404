@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <!-- build:css -->
-        <link rel="stylesheet" href="/dist/cdn/css/main.css">
+        <link rel="stylesheet" href="/dist/main.css">
         <!-- endbuild -->
         <title>Make Pizza!</title>
         <noscript><meta http-equiv="refresh" content="0; url=/noscript.txt"></noscript>

@@ -3,7 +3,7 @@
     "dependencies": {
         "durandal": "^2.1.0",
         "knockout.mapping": "^2.4.3",
-        "lodash": "^3.10.1",
+        "lodash": "^4.17.19",
         "xr": "^0.1.13"
     },
     "devDependencies": {
